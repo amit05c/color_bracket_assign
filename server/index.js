@@ -3,6 +3,7 @@ const cors= require("cors")
 const { connection } = require("./config/db")
 const { userRouter } = require("./Routes/userRoute")
 const { recipeRouter } = require("./Routes/recipeRouter")
+const { ingredientRouter } = require("./Routes/ingredientRouter")
 require("dotenv").config()
 const app= express()
 const PORT= process.env.PORT
@@ -11,6 +12,7 @@ app.use(express.json())
 
 app.use("/user",userRouter)
 app.use("/recipe",recipeRouter)
+app.use("/ingredients",ingredientRouter)
 
 app.listen(PORT,async()=>{
     try {

@@ -1,3 +1,4 @@
+const { IngredientModel } = require("../models/ingredient.model")
 const { RecipeModel } = require("../models/recipe.model")
 
 const recipe=async(req,res)=>{
@@ -12,6 +13,35 @@ const recipe=async(req,res)=>{
      res.send()
   }
 }
+
+
+const getRecipe= async(req,res)=>{
+  try{
+    let getData= await RecipeModel.find().populate('creatorId','-password -__v').select("-__v").populate('Ingredients')
+    // let getIngred= await IngredientModel.find().populate("recipeId")
+    
+    // let getData= await RecipeModel.aggregate(
+    //   {
+    //     $lookup: {
+    //       from: 'user',
+    //       localField: 'creatorId',
+    //       foreignField: '_id',
+    //       as: 'user'
+    //     }
+    //   })
+    // // let rec
+    // for(let i=0; i<getData.length; i++){
+    //    for(let j=0; j<getIngred.length; j++){
+    //     if(getData[i]['_id']==getIngred[j])
+    //    }
+    // }
+    res.send(getData)
+  }
+  catch(err){
+    console.log(err)
+  }
+}
 module.exports={
-    recipe
+    recipe,
+    getRecipe
 }

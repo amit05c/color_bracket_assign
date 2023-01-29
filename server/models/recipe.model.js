@@ -13,7 +13,18 @@ const recipeSchema = new mongoose.Schema({
     minlength: [3, 'A userId must have lessthan or equal then 3 characters'],
     unique:[true,'userid not availabe, please choose another']
   },
-});
+},
+{
+  toJSON: { virtuals: true },
+   toObject: { virtuals: true }
+}
+);
+
+recipeSchema.virtual('Ingredients',{
+  ref:'ingredient',
+  foreignField:'recipeId',
+  localField:'_id'
+})
 
 const RecipeModel= mongoose.model("recipe",recipeSchema)
 
