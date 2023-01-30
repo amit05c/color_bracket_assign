@@ -5,12 +5,17 @@ const recipe=async(req,res)=>{
   try{
        let newRecipe= RecipeModel(req.body)
        await newRecipe.save()
-       res.send(newRecipe)
+       res.status(201).send({
+        status:"success",
+        data:newRecipe
+       })
        
   }
   catch(err){
-    console.log(err.message)
-     res.send()
+    res.status(400).send({
+      status:"error",
+      data:err.message
+     })
   }
 }
 
@@ -41,7 +46,10 @@ const getRecipe= async(req,res)=>{
      })
   }
   catch(err){
-    console.log(err)
+    res.status(400).send({
+      status:"error",
+      data:err.message
+     })
   }
 }
 
