@@ -1,1 +1,1 @@
-export const baseUrl=`https://muddy-vest-goat.cyclic.app/`
+export const baseUrl=`https://muddy-vest-goat.cyclic.app`
