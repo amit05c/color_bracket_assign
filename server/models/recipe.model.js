@@ -26,6 +26,12 @@ recipeSchema.virtual('Ingredients',{
   localField:'_id'
 })
 
+recipeSchema.virtual('process',{
+  ref:'process',
+  foreignField:'recipeId',
+  localField:'_id'
+})
+
 const RecipeModel= mongoose.model("recipe",recipeSchema)
 
 module.exports={

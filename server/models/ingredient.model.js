@@ -21,7 +21,13 @@ const ingredientSchema = new mongoose.Schema({
     ref: "recipe",
     required: [true, "Indegredient must have a recipeId"]
   },
-});
+},
+{
+  toJSON: { virtuals: true },
+   toObject: { virtuals: true }
+}
+);
+
 
 const IngredientModel = mongoose.model("ingredient", ingredientSchema);
 

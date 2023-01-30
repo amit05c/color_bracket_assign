@@ -17,7 +17,7 @@ const recipe=async(req,res)=>{
 
 const getRecipe= async(req,res)=>{
   try{
-    let getData= await RecipeModel.find().populate('creatorId','-password -__v').select("-__v").populate('Ingredients')
+    let getData= await RecipeModel.find().populate('creatorId','-password -__v').select("-__v")
     // let getIngred= await IngredientModel.find().populate("recipeId")
     
     // let getData= await RecipeModel.aggregate(
@@ -41,7 +41,27 @@ const getRecipe= async(req,res)=>{
     console.log(err)
   }
 }
+
+const singleRecipe=async(req,res)=>{
+  try{
+    // console.log(req.params)
+    let getData= await RecipeModel.findById(req.params).populate('creatorId','-password -__v').select("-__v").populate('Ingredients','-__v').populate('process','-__v')
+    
+    res.status(201).send({
+     status:"success",
+     data:getData
+    })
+  }
+  catch(err){
+    res.status(400).send({
+      status:"error",
+      data:err.message
+     })
+  }
+}
+
 module.exports={
     recipe,
-    getRecipe
+    getRecipe,
+    singleRecipe
 }

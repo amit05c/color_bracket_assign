@@ -4,19 +4,26 @@ const ingredient=async(req,res)=>{
   try{
        let newRecipe= IngredientModel(req.body)
        await newRecipe.save()
-       res.send(newRecipe)
+       res.status(201).send({
+        status:"success",
+        data:newRecipe
+       })
        
   }
   catch(err){
     console.log(err.message)
-     res.send()
+    res.status(400).send({
+      status:"error",
+      data:err.message
+     })
   }
 }
 
 
 const getData= async(req,res)=>{
     try{
-    let getRecipe=await IngredientModel.find().populate('recipeId')
+    let getRecipe=await IngredientModel.find().populate('recipeId','-creatorId -__v').select('-__v -id')
+
          res.send(getRecipe)
         
    }
