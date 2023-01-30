@@ -35,7 +35,10 @@ const getRecipe= async(req,res)=>{
     //     if(getData[i]['_id']==getIngred[j])
     //    }
     // }
-    res.send(getData)
+    res.status(201).send({
+      status:"success",
+      data:getData
+     })
   }
   catch(err){
     console.log(err)
