@@ -15,14 +15,16 @@ useEffect(()=>{
 console.log(data)
   return (
     <Box>
-        <Container p={"2rem"} border={"1px solid red"}>
+         <Text fontSize={"4xl"} color={"red.400"}>Details</Text>
+        <Container p={"2rem"} border={"1px solid yellow"}  boxShadow ='rgba(0, 0, 0, 0.24) 0px 3px 8px'>
         <Image src={data?.image} boxSize={"300px"} m={"auto"}/>
         <Box>
-            <Text as={"b"}>{data?.Ingredients[0]?.item}</Text>
-            <Text>{data?.Ingredients[0]?.amount}</Text>
+            <Text  as={"b"}>{`Recipe: ${data?.name}`}</Text>
+            <br/>
+        
+            <Text>{`Amount ${data?.Ingredients[0]?.amount} ${data?.Ingredients[0]?.item}`}</Text>
             <Text>{data?.description}</Text>
-            <Text>{`Recipe: ${data?.name}`}</Text>
-            <Text>{data?.creatorId?.name}</Text>
+            <Text>{`Creator: ${data?.creatorId?.name}`}</Text>
         </Box>
         </Container>
     </Box>
