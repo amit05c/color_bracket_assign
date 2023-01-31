@@ -28,7 +28,7 @@ const register= async(req,res)=>{
       console.log(err)
        res.status(400).send({
         status:"fail",
-        error:err.message
+        Error:err.message
        })
     }
 }

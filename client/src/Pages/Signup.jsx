@@ -52,8 +52,9 @@ const Signup = () => {
 
        })
        .catch(err=>{
+        console.log(err)
         toast({
-            description: "UserId not available",
+            description: err.response.data.Error,
             status: 'error',
             duration: 4000,
             isClosable: true,
